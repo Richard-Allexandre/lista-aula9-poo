@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Livro {
     String titulo;
     String isbn;
@@ -15,9 +17,10 @@ public class Livro {
         return this.isbn.equals(outro.isbn);
     }
 
-    // Por que comparamos pelo ISBN e não pelo título?
-    // ISBN é um identificador único e universal de cada edição de livro.
-    // Títulos podem se repetir (dois livros diferentes com o mesmo nome).
-    // Usar ISBN garante que a igualdade reflita identidade real do exemplar,
-    // não uma coincidência de nome.
+    @Override
+    public int hashCode() {
+        return Objects.hash(isbn); // mesmo campo usado no equals
+    }
+    // Contrato Java: se a.equals(b) == true, então a.hashCode() == b.hashCode() DEVE ser true.
+    // Usar o mesmo campo garante que objetos iguais gerem o mesmo hash.
 }

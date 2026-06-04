@@ -1,16 +1,14 @@
 public class MainLivro {
     public static void main(String[] args) {
         Livro l1 = new Livro("Clean Code", "978-0132350884");
-        Livro l2 = new Livro("Livro Diferente", "978-0132350884");
+        Livro l2 = new Livro("Outro Título", "978-0132350884");
         Livro l3 = new Livro("Clean Code", "978-9999999999");
 
-        System.out.println(l1.equals(l2)); // true — mesmo ISBN, títulos diferentes
-        System.out.println(l1.equals(l3)); // false — ISBNs diferentes
+        System.out.println(l1.hashCode()); // mesmo valor que l2
+        System.out.println(l2.hashCode()); // mesmo valor que l1 — mesmo ISBN
+        System.out.println(l3.hashCode()); // valor diferente — ISBN diferente
 
-        // Testando com null — não lança exceção:
-        System.out.println(l1.equals(null)); // false (instanceof retorna false para null)
-
-        // Testando com String — não lança exceção:
-        System.out.println(l1.equals("978-0132350884")); // false (não é instância de Livro)
+        System.out.println(l1.hashCode() == l2.hashCode()); // true
+        System.out.println(l1.hashCode() == l3.hashCode()); // false (na prática)
     }
 }
