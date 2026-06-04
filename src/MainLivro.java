@@ -1,17 +1,16 @@
 public class MainLivro {
     public static void main(String[] args) {
         Livro l1 = new Livro("Clean Code", "978-0132350884");
-        Livro l2 = new Livro("Clean Code", "978-0132350884");
+        Livro l2 = new Livro("Livro Diferente", "978-0132350884");
+        Livro l3 = new Livro("Clean Code", "978-9999999999");
 
-        System.out.println(l1 == l2);     // false
-        System.out.println(l1.equals(l2)); // false
+        System.out.println(l1.equals(l2)); // true — mesmo ISBN, títulos diferentes
+        System.out.println(l1.equals(l3)); // false — ISBNs diferentes
 
-        // l1 == l2 é false: são dois objetos distintos na memória.
-        // == em objetos compara endereços, não conteúdo.
+        // Testando com null — não lança exceção:
+        System.out.println(l1.equals(null)); // false (instanceof retorna false para null)
 
-        // l1.equals(l2) também é false: sem @Override equals(),
-        // o Java usa a implementação padrão de Object, que internamente
-        // faz o mesmo que ==, ou seja, compara referências.
-        // Por isso, mesmo com os mesmos dados, retorna false.
+        // Testando com String — não lança exceção:
+        System.out.println(l1.equals("978-0132350884")); // false (não é instância de Livro)
     }
 }
